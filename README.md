@@ -40,9 +40,9 @@
 
 | Column         | Type       | Options           |
 | -------------- | ---------- | ----------------- |
-| shipping_fee   | integer    | null: false       |
-| shipment_area  | text       | null: false       |
-| shipment_date  | text       | null: false       |
+| fee            | integer    | null: false       |
+| area           | text       | null: false       |
+| date           | text       | null: false       |
 | user           | references | foreign_key: true |
 | item           | references | foreign_key: true |
 
