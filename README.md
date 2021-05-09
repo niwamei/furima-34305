@@ -19,17 +19,17 @@
 
 ## itemsテーブル
 
-| Column         | Type       | Options           |
-| -------------- | ---------- | ----------------- |
-| name           | string     | null: false       |
-| description    | text       | null: false       |
-| category_id    | integer    | null: false       |
-| condition_id   | integer    | null: false       |
-| price          | integer    | null: false       |
-| delivery_fee   | integer    | null: false       |
-| delivery_area  | text       | null: false       |
-| delivery_date  | text       | null: false       |
-| user           | references | foreign_key: true |
+| Column            | Type       | Options           |
+| ----------------- | ---------- | ----------------- |
+| name              | string     | null: false       |
+| description       | text       | null: false       |
+| category_id       | integer    | null: false       |
+| condition_id      | integer    | null: false       |
+| price             | integer    | null: false       |
+| delivery_fee_id   | integer    | null: false       |
+| delivery_area_id  | integer    | null: false       |
+| delivery_date_id  | integer    | null: false       |
+| user              | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -52,7 +52,7 @@
 | Column            | Type       | Options           |
 | ----------------- | ---------- | ----------------- |
 | postal_code       | string     | null: false       |
-| province          | integer    | null: false       |
+| prefecture_id     | integer    | null: false       |
 | city              | string     | null: false       |
 | address           | string     | null: false       |
 | building          | string     |                   |
