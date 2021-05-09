@@ -2,51 +2,50 @@
 
 ## usersテーブル
 
-| Column              | Type    | Options                       |
-| ------------------- | ------- | ----------------------------- |
-| nickname            | string  | null: false                   |
-| email               | string  | null: false, uniqueness: true |
-| encrypted_password  | string  | null: false                   |
-| last_name           | string  | null: false                   |
-| first_name          | string  | null: false                   |
-| last_name_kana      | string  | null: false                   |
-| first_name_kana     | string  | null: false                   |
-| birthday            | date    | null: false                   |
+| Column              | Type    | Options                    |
+| ------------------- | ------- | -------------------------- |
+| nickname            | string  | null: false                |
+| email               | string  | null: false, unique: true  |
+| encrypted_password  | string  | null: false                |
+| last_name           | string  | null: false                |
+| first_name          | string  | null: false                |
+| last_name_kana      | string  | null: false                |
+| first_name_kana     | string  | null: false                |
+| birthday            | date    | null: false                |
 
 ### Association
 - has_many :items
-- has_many :shipment_methods
-- has_many :delivery_addresses
+- has_many :purchase_histories
 
 ## itemsテーブル
 
 | Column         | Type       | Options           |
 | -------------- | ---------- | ----------------- |
 | name           | string     | null: false       |
-| image          | integer    | null: false       |
 | description    | text       | null: false       |
-| category       | integer    | null: false       |
-| condition      | integer    | null: false       |
+| category_id    | integer    | null: false       |
+| condition_id   | integer    | null: false       |
 | price          | integer    | null: false       |
+| delivery_fee   | integer    | null: false       |
+| delivery_area  | text       | null: false       |
+| delivery_date  | text       | null: false       |
 | user           | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :shipment_method
+- has_one :purchase_history
 
-## shipment_methodsテーブル
+## purchase_historiesテーブル
 
 | Column         | Type       | Options           |
 | -------------- | ---------- | ----------------- |
-| fee            | integer    | null: false       |
-| area           | text       | null: false       |
-| date           | text       | null: false       |
 | user           | references | foreign_key: true |
 | item           | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one :delivery_address
 
 ## delivery_addressesテーブル
 
@@ -58,7 +57,7 @@
 | address           | string     | null: false       |
 | building          | string     |                   |
 | phone_number      | string     | null: false       |
-| shipment_methods  | references | foreign_key: true |
+| purchase_history  | references | foreign_key: true |
 
 ### Association
-- belongs_to :user
+- belongs_to :purchase_history
