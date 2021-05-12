@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("First name kana can't be blank")
     end
-    
+
     it 'birthdayが空では登録できないこと' do
       @user.birthday = ''
       @user.valid?
@@ -79,21 +79,22 @@ RSpec.describe User, type: :model do
       @user.password = 'abc12'
       @user.password_confirmation = 'abc12'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)", "Password Complexity requirement not met. Please use at least 1 letter and 1 number")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)',
+                                                    'Password Complexity requirement not met. Please use at least 1 letter and 1 number')
     end
 
     it 'passwordが半角のみであれば登録できないこと' do
       @user.password = 'abcdef'
       @user.password_confirmation = 'abcdef'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password Complexity requirement not met. Please use at least 1 letter and 1 number")
+      expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Please use at least 1 letter and 1 number')
     end
 
     it 'passwordが数字のみであれば登録できないこと' do
       @user.password = '123456'
       @user.password_confirmation = '123456'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password Complexity requirement not met. Please use at least 1 letter and 1 number")
+      expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Please use at least 1 letter and 1 number')
     end
 
     it 'passwordとpassword_confirmationが不一致では登録できないこと' do
