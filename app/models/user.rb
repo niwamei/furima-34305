@@ -12,9 +12,16 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   japanese_regex = /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
-  validates :last_name, presence: true, format: { with: japanese_regex }
-  validates :first_name, presence: true, format: { with: japanese_regex }
-  validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :birthday
+    with_options format: { with: japanese_regex } do
+      validates :last_name
+      validates :first_name
+    end
+    with_options format: { with: /\A[ァ-ヶー－]+\z/ } do
+      validates :last_name_kana
+      validates :first_name_kana
+    end
+  end
 end
