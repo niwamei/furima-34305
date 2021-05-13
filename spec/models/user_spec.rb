@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)',
                                                       'Password Complexity requirement not met. Please use at least 1 letter and 1 number')
       end
-      it 'passwordが半角のみであれば登録できないこと' do
+      it 'passwordが英字のみであれば登録できないこと' do
         @user.password = 'abcdef'
         @user.password_confirmation = 'abcdef'
         @user.valid?
