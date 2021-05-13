@@ -101,6 +101,12 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Please use at least 1 letter and 1 number')
       end
+      it 'passwordが全角の場合は登録できないこと' do
+        @user.password = 'ａａａ１２３'
+        @user.password_confirmation = 'ａａａ１２３'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Please use at least 1 letter and 1 number')
+      end
       it 'passwordとpassword_confirmationが不一致では登録できないこと' do
         @user.password = 'abc123'
         @user.password_confirmation = 'abc1234'
