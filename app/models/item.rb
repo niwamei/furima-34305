@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_many :items
   has_one_attached :image
 
-  extend ActiveHash::Associations::ActiveRecordExtentions
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category, :condition, :delivery_fee, :delivery_area, :delivery_date
 
   def add_tax_price
