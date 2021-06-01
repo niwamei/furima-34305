@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'ユーザーログイン機能', type: :system do
-  before do
+  before do 
     @user = FactoryBot.build(:user)
   end
-  context 'ユーザー新規登録ができるとき' do
+  context 'ユーザー新規登録ができるとき' do 
     it '正しい情報を入力すればユーザー新規登録ができてトップページに移動する' do
       # トップページに移動する
       visit root_path
@@ -25,9 +25,9 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
       select '1', from: 'user_birthday_2i'
       select '1', from: 'user_birthday_3i'
       # サインアップボタンを押すとユーザーモデルのカウントが1上がることを確認する
-      expect do
+      expect{
         find('input[name="commit"]').click
-      end.to change { User.count }.by(1)
+      }.to change { User.count }.by(1)
       # トップページへ遷移したことを確認する
       expect(current_path).to eq(root_path)
       # カーソルを合わせるとログアウトボタンが表示されることを確認する
@@ -58,9 +58,9 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
       select '--', from: 'user_birthday_2i'
       select '--', from: 'user_birthday_3i'
       # サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
-      expect do
+      expect{
         find('input[name="commit"]').click
-      end.to change { User.count }.by(0)
+      }.to change { User.count }.by(0)
       # 新規登録ページへ戻されることを確認する
       expect(current_path).to eq user_registration_path
     end
