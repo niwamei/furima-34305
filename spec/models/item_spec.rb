@@ -59,10 +59,20 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it 'categoryを選択していない場合は登録できないこと' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
       it 'conditionが空では登録できないこと' do
         @item.condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
+      it 'conditionを選択していない場合は登録できないこと' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
       it 'priceが空では登録できないこと' do
         @item.price = ''
@@ -70,12 +80,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが300円以下であれば保存できないこと' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be greater than 300')
       end
       it 'priceが9,999,999円以上であれば保存できないこと' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 1000000')
       end
@@ -83,6 +93,61 @@ RSpec.describe Item, type: :model do
         @item.price = '３００'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is too short (minimum is 3 characters)', 'Price is not a number')
+      end
+      it 'priceが英数混合では保存できないこと' do
+        @item.price = '300yen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'priceが半角英語のみでは保存できないこと' do
+        @item.price = 'three hundred yen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is too short (minimum is 3 characters)', 'Price is not a number')
+      end
+      it 'conditionを選択していない場合は登録できないこと' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      end
+      it '画像が空では保存できないこと' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'delivery_feeが空では登録できないこと' do
+        @item.delivery_fee_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
+      end
+      it 'delivery_feeを選択していない場合は登録できないこと' do
+        @item.delivery_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+      end
+      it 'delivery_areaが空では登録できないこと' do
+        @item.delivery_area_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery area can't be blank")
+      end
+      it 'delivery_areaを選択していない場合は登録できないこと' do
+        @item.delivery_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery area must be other than 1")
+      end
+      it 'delivery_dateが空では登録できないこと' do
+        @item.delivery_date_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery date can't be blank")
+      end
+      it 'delivery_dateを選択していない場合は登録できないこと' do
+        @item.delivery_date_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery date must be other than 1")
+      end
+      it '画像が空では保存できないこと' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
     end
   end
