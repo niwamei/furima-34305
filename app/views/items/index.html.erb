@@ -126,34 +126,34 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-      <li class='list'>
-        <%= link_to "#" do %>
-          <% @items.each do |item| %>
-          <div class='item-img-content'>
-            <%= image_tag item.image, class: "item-img" %>
+      <% @items.each do |item| %>
+        <li class='list'>
+          <%= link_to item_path(item.id), method: :get do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: "item-img" %>
 
-            <%# 商品が売れていればsold outを表示しましょう %>
-            <div class='sold-out'>
-              <span>Sold Out!!</span>
+              <%# 商品が売れていればsold outを表示しましょう %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+              <%# //商品が売れていればsold outを表示しましょう %>
+
             </div>
-            <%# //商品が売れていればsold outを表示しましょう %>
-
-          </div>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              <%= item.name %>
-            </h3>
-            <div class='item-price'>
-              <span><%= item.price %>円<br><%= item.delivery_fee.name %></span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.price %>円<br><%= item.delivery_fee.name %></span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
               </div>
             </div>
-          </div>
           <% end %>
-        <% end %>
-      </li>
+        </li>
+      <% end %>
       <% if @items.length == 0 %>
         <li class='list'>
           <%= link_to '#' do %>
