@@ -62,7 +62,7 @@ RSpec.describe Item, type: :model do
       it 'categoryを選択していない場合は登録できないこと' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it 'conditionが空では登録できないこと' do
         @item.condition_id = ''
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
       it 'conditionを選択していない場合は登録できないこと' do
         @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+        expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
       it 'priceが空では登録できないこと' do
         @item.price = ''
@@ -85,7 +85,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price must be greater than 300')
       end
       it 'priceが9,999,999円以上であれば保存できないこと' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 1000000')
       end
@@ -107,7 +107,7 @@ RSpec.describe Item, type: :model do
       it 'conditionを選択していない場合は登録できないこと' do
         @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+        expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
       it '画像が空では保存できないこと' do
         @item.image = nil
@@ -122,7 +122,7 @@ RSpec.describe Item, type: :model do
       it 'delivery_feeを選択していない場合は登録できないこと' do
         @item.delivery_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery fee must be other than 1')
       end
       it 'delivery_areaが空では登録できないこと' do
         @item.delivery_area_id = ''
@@ -132,7 +132,7 @@ RSpec.describe Item, type: :model do
       it 'delivery_areaを選択していない場合は登録できないこと' do
         @item.delivery_area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery area must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery area must be other than 1')
       end
       it 'delivery_dateが空では登録できないこと' do
         @item.delivery_date_id = ''
@@ -142,7 +142,7 @@ RSpec.describe Item, type: :model do
       it 'delivery_dateを選択していない場合は登録できないこと' do
         @item.delivery_date_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery date must be other than 1")
+        expect(@item.errors.full_messages).to include('Delivery date must be other than 1')
       end
       it '画像が空では保存できないこと' do
         @item.image = nil
