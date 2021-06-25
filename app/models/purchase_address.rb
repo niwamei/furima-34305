@@ -14,7 +14,7 @@ class PurchaseAddress
     with_options numericality: { other_than: 1 } do
       validates :prefecture_id
     end
-    with_options length: { maximum: 11 } do
+    with_options format: { with: /\A[+-]?\d+\z/ }, length: { maximum: 11 } do
       validates :phone_number
     end
   end
