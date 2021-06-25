@@ -1,6 +1,4 @@
 class PurchaseHistoriesController < ApplicationController
-  require 'payjp'
-
   def index
     @item = Item.find(params[:item_id])
     unless user_signed_in?
