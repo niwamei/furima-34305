@@ -21,6 +21,7 @@ class PurchaseAddress
 
   def save
     purchase_history = PurchaseHistory.create(user_id: user_id, item_id: item_id)
-    DeliveryAddress.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, purchase_history_id: purchase_history.id)
+    DeliveryAddress.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address,
+                           building: building, phone_number: phone_number, purchase_history_id: purchase_history.id)
   end
 end

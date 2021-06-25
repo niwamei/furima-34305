@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseAddress, type: :model do
-  before do 
+  before do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
-    @purchase_address = FactoryBot.build(:purchase_address, user_id: user.id, item_id: item.id )
+    @purchase_address = FactoryBot.build(:purchase_address, user_id: user.id, item_id: item.id)
     sleep 0.1
   end
 
@@ -27,12 +27,12 @@ RSpec.describe PurchaseAddress, type: :model do
     it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
       @purchase_address.postal_code = '1234567'
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Postal code is invalid")
+      expect(@purchase_address.errors.full_messages).to include('Postal code is invalid')
     end
     it 'prefecture_idを選択していないと保存できないこと' do
       @purchase_address.prefecture_id = 1
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Prefecture must be other than 1")
+      expect(@purchase_address.errors.full_messages).to include('Prefecture must be other than 1')
     end
     it 'prefecture_idが空だと保存できないこと' do
       @purchase_address.prefecture_id = ''
@@ -57,17 +57,17 @@ RSpec.describe PurchaseAddress, type: :model do
     it 'phone_numberが12桁以上の数値だと保存できないこと' do
       @purchase_address.phone_number = '000123456789'
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      expect(@purchase_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
     end
     it 'phone_numberが英数混合では保存できないこと' do
       @purchase_address.phone_number = '000-1234-abcd'
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      expect(@purchase_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
     end
     it 'phone_numberが半角英語だけでは保存できないこと' do
       @purchase_address.phone_number = 'abcdefghijk'
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+      expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
     end
     it 'tokenが空だと保存できないこと' do
       @purchase_address.token = nil
