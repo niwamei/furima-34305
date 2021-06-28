@@ -24,7 +24,7 @@ class Item < ApplicationRecord
       validates :delivery_date_id
     end
     with_options format: { with: VALID_PRICEL_REJEX }, length: { minimum: 3, maxinum: 7 },
-                 numericality: { only_integer: true, greater_than: 299, less_than: 1_000_000 } do
+                 numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 } do
       validates :price
     end
   end
